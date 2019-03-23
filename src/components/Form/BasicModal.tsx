@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Interface 선언으로 propTypes를 컴파일 시점에 대체할 수 있다.
+ */
 interface IBasicModal {
   open: boolean;
   title: string;
