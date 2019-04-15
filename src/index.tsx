@@ -3,14 +3,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Provider } from 'react-redux';
+import { Provider as ReduxProvider } from 'react-redux';
 import { initializeStore, RootState } from './reduxStore';
+import { Provider as MobxProvider } from 'mobx-react';
+import MobxDevTools from 'mobx-react-devtools';
+import * as MobxStores from './mobxStore';
 
 ReactDOM.render(
   <Router>
-    <Provider store={initializeStore({} as RootState)}>
-      <App />
-    </Provider>
+    <ReduxProvider store={initializeStore({} as RootState)}>
+      <MobxProvider {...MobxStores}>
+        <div>
+          <MobxDevTools />
+          <App />
+        </div>
+      </MobxProvider>
+    </ReduxProvider>
   </Router>,
   document.getElementById('root'),
 );

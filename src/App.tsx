@@ -22,11 +22,15 @@ class App extends Component<AppProps> {
         <li>
           <Link to="/rds">Resize & Drag & Snap</Link>
         </li>
+        <li>
+          <Link to="/counter">MobX Counter</Link>
+        </li>
       </ul>
     );
   };
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <div className="Sidebar">{this.renderMenu()}</div>
@@ -35,8 +39,7 @@ class App extends Component<AppProps> {
     );
   }
 
-  componentDidMount() {
-  }
+  componentDidMount() {}
 }
 
 export default App;
