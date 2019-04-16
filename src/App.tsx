@@ -30,7 +30,6 @@ class App extends Component<AppProps> {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="App">
         <div className="Sidebar">{this.renderMenu()}</div>
