@@ -3,6 +3,9 @@ import { inject } from 'mobx-react';
 import { ICounterStore } from '../mobxStore/CounterStore';
 import { observer } from 'mobx-react';
 import TodoStore from '../mobxStore/TodoStore';
+import { debounce } from 'rxjs/operators';
+import { timer } from 'rxjs';
+import { toStream } from '../mobxStore/mobx-utils';
 
 interface CounterProps {
   counterStore: ICounterStore;
@@ -13,8 +16,8 @@ interface CounterProps {
 @observer
 class Counter extends Component<CounterProps, any> {
   render() {
-    const { counterStore, todoStore } = this.props;
-    console.log(JSON.stringify(todoStore.todos, null, 2));
+    const { counterStore } = this.props;
+
     return (
       <div>
         <h1>Counter: {counterStore.counter}</h1>
@@ -31,7 +34,15 @@ class Counter extends Component<CounterProps, any> {
   }
 
   componentDidMount(): void {
+    const { todoStore } = this.props;
+
     TodoStore.fetchTodos();
+
+    toStream(() => todoStore.todos)
+      .pipe(debounce(() => timer(3000)))
+      .subscribe(value => {
+        console.log(value);
+      });
   }
 }
 

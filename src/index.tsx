@@ -1,3 +1,4 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
@@ -7,6 +8,8 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { initializeStore, RootState } from './reduxStore';
 import { Provider as MobxProvider } from 'mobx-react';
 import * as MobxStores from './mobxStore';
+
+require('symbol-observable');
 
 ReactDOM.render(
   <Router>
