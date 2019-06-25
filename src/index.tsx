@@ -6,17 +6,13 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { Provider as ReduxProvider } from 'react-redux';
 import { initializeStore, RootState } from './reduxStore';
 import { Provider as MobxProvider } from 'mobx-react';
-import MobxDevTools from 'mobx-react-devtools';
 import * as MobxStores from './mobxStore';
 
 ReactDOM.render(
   <Router>
     <ReduxProvider store={initializeStore({} as RootState)}>
       <MobxProvider {...MobxStores}>
-        <div>
-          <MobxDevTools />
-          <App />
-        </div>
+        <App />
       </MobxProvider>
     </ReduxProvider>
   </Router>,
