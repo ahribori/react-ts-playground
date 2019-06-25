@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { inject } from 'mobx-react';
 import { ICounterStore } from '../mobxStore/CounterStore';
 import { observer } from 'mobx-react';
+import TodoStore from '../mobxStore/TodoStore';
 
 interface CounterProps {
   counterStore: ICounterStore;
+  todoStore: typeof TodoStore;
 }
 
-@inject('counterStore')
+@inject('counterStore', 'todoStore')
 @observer
 class Counter extends Component<CounterProps, any> {
   render() {
-    const { counterStore } = this.props;
+    const { counterStore, todoStore } = this.props;
+    console.log(JSON.stringify(todoStore.todos, null, 2));
     return (
       <div>
         <h1>Counter: {counterStore.counter}</h1>
@@ -25,6 +28,10 @@ class Counter extends Component<CounterProps, any> {
         <button onClick={e => counterStore.popNumber()}>pop</button>
       </div>
     );
+  }
+
+  componentDidMount(): void {
+    TodoStore.fetchTodos();
   }
 }
 
