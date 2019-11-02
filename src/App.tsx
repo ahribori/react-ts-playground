@@ -25,6 +25,9 @@ class App extends Component<AppProps> {
         <li>
           <Link to="/counter">MobX Counter</Link>
         </li>
+        <li>
+          <Link to="/rx">Rx Playground</Link>
+        </li>
       </ul>
     );
   };

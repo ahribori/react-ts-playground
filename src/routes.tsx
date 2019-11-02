@@ -13,11 +13,13 @@ const loadDynamic = (dynamicImport: Promise<any>) =>
 const Home = loadDynamic(import('./containers/Home'));
 const ResizeDragSnap = loadDynamic(import('./containers/ResizeDragSnap'));
 const Counter = loadDynamic(import('./containers/Counter'));
+const RxPlayground = loadDynamic(import('./containers/RxPlayground'));
 
 export default (
   <Switch>
     <Route exact path="/" component={Home} />
     <Route exact path="/rds" component={ResizeDragSnap} />
     <Route exact path="/counter" component={Counter} />
+    <Route exact path="/rx" component={RxPlayground} />
   </Switch>
 );
