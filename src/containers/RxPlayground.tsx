@@ -10,9 +10,25 @@ const RxPlayground: React.FC = () => {
     ),
   );
 
+  const [handleChange, [text]] = useEventCallback(
+    eventSource$ =>
+      eventSource$.pipe(
+        // @ts-ignore
+        map((event: any) => {
+          return [event.target.value];
+        }),
+        debounceTime(500),
+      ),
+    [''],
+  );
+
   return (
     <div>
+      <h1>Mouse Event</h1>
       <button onClick={handleClick}>클릭</button>
+      <h1>Input Event</h1>
+      <input type="text" onChange={handleChange} />
+      <div>Debounced value: {text} </div>
     </div>
   );
 };
