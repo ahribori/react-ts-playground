@@ -28,6 +28,9 @@ class App extends Component<AppProps> {
         <li>
           <Link to="/rx">Rx Playground</Link>
         </li>
+        <li>
+          <Link to="/rq">React Query</Link>
+        </li>
       </ul>
     );
   };
