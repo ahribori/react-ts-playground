@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
-import { QueryClient, QueryClientProvider, useQuery } from 'react-query';
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 import axios from 'axios';
 
 // Create a client
@@ -11,7 +16,9 @@ const fetchTodo = (id: number) =>
 const QueryComponent = () => {
   const [todoId, setTodoId] = useState(1);
   const query = useQuery(['todo', todoId], () => fetchTodo(todoId));
+  const client = useQueryClient();
   if (query.isLoading) return <div>데이터를 불러오고 있습니다.</div>;
+
   return (
     <div>
       <input
@@ -22,6 +29,13 @@ const QueryComponent = () => {
         }}
       />
       <pre>{JSON.stringify(query.data?.data)}</pre>
+      <button
+        onClick={() => {
+          client.invalidateQueries('todo');
+        }}
+      >
+        Invalidate
+      </button>
     </div>
   );
 };
