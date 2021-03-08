@@ -15,6 +15,7 @@ const ResizeDragSnap = loadDynamic(import('./containers/ResizeDragSnap'));
 const Counter = loadDynamic(import('./containers/Counter'));
 const RxPlayground = loadDynamic(import('./containers/RxPlayground'));
 const ReactQuery = loadDynamic(import('./containers/ReactQuery'));
+const FormikExample = loadDynamic(import('./containers/FormikExample'));
 
 export default (
   <Switch>
@@ -23,5 +24,6 @@ export default (
     <Route exact path="/counter" component={Counter} />
     <Route exact path="/rx" component={RxPlayground} />
     <Route exact path="/rq" component={ReactQuery} />
+    <Route exact path="/formik" component={FormikExample} />
   </Switch>
 );

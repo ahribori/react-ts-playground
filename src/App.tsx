@@ -31,6 +31,9 @@ class App extends Component<AppProps> {
         <li>
           <Link to="/rq">React Query</Link>
         </li>
+        <li>
+          <Link to="/formik">Formik</Link>
+        </li>
       </ul>
     );
   };
